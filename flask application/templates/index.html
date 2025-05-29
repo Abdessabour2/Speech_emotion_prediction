@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Emotion Recognition</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            padding-top: 60px;
+        }
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        #audio-player {
+            margin-top: 15px;
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card p-4">
+        <h2 class="text-center mb-4">🎤 Speech Emotion Recognition</h2>
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="audioFile">Upload your .wav file</label>
+                <input type="file" class="form-control-file" id="audioFile" name="file" accept=".wav" required>
+                <audio id="audio-player" controls style="display: none;"></audio>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Analyze Emotion</button>
+        </form>
+        <div id="result" class="text-center font-weight-bold text-success"></div>
+    </div>
+    <div class="footer">© 2025 Speech Emotion Recognition App</div>
+</div>
+
+<script>
+    const form = document.getElementById('upload-form');
+    const audioInput = document.getElementById('audioFile');
+    const audioPlayer = document.getElementById('audio-player');
+    const resultDiv = document.getElementById('result');
+
+    audioInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const objectURL = URL.createObjectURL(file);
+            audioPlayer.src = objectURL;
+            audioPlayer.style.display = 'block';
+        } else {
+            audioPlayer.style.display = 'none';
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        const file = audioInput.files[0];
+
+        if (!file) {
+            resultDiv.innerHTML = "Please upload a file first.";
+            return;
+        }
+
+        formData.append('file', file);
+
+        fetch('/predict', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.prediction) {
+                resultDiv.innerHTML = `Predicted Emotion: <span class="text-primary">${data.prediction}</span>`;
+            } else if (data.error) {
+                resultDiv.innerHTML = `<span class="text-danger">Error: ${data.error}</span>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            resultDiv.innerHTML = `<span class="text-danger">Error processing the file.</span>`;
+        });
+    });
+</script>
+
+</body>
+</html>
