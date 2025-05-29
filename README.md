@@ -16,7 +16,7 @@ Here are screenshots of the Flask web application:
 
 
 ** Emotion Prediction Example:**
-![Flask SER App - Prediction Example](![image](https://github.com/user-attachments/assets/ab50f8de-b000-4a89-b422-48ebf8c57d3d)
+![Flask SER App - Prediction Example][(![image](https://github.com/user-attachments/assets/ab50f8de-b000-4a89-b422-48ebf8c57d3d)](https://github.com/Abdessabour2/Speech_emotion_prediction/blob/main/146d1388145c2d108be03ce5cd64c57e5ba80ef3.png)
 )
 *Figure 2: Example of a predicted emotion displayed to the user after processing an audio file.*
 
