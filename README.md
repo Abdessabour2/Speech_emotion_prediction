@@ -88,31 +88,7 @@ Follow these steps to set up the development environment and run the project loc
 ---
 
 
-## 📁 Project File Structure
 
-Based on your screenshots, the structure is approximately:
-
-Speech_emotion_prediction/
-├── flask application/            # Core web application files
-│   ├── pycache/            # Python cache (should be in .gitignore)
-│   ├── model/                  # Contains the trained SER model(s)
-│   │   └── your_trained_model.h5 # Example model file
-│   ├── static/                 # CSS, JavaScript, images for Flask UI
-│   │   └── style.css           # Example
-│   ├── templates/              # HTML templates for Flask
-│   │   └── index.html          # Example
-│   ├── uploads/                # Temporary storage for user-uploaded audio (consider .gitignore)
-│   ├── app.py                  # Main Flask application script (assumption, please verify name)
-│   ├── ... (other .py files specific to Flask app if any) ...
-│   └── *.wav                   # Example/test .wav files (e.g., 1001_IOM_NEU_XX.wav)
-├── screenshots/                
-│   ├── flask_app_main_interface.png
-│   └── flask_app_prediction_example.png
-├── Wav2Vec2Model.ipynb         # Jupyter Notebook for Wav2Vec2 model exploration/training
-├── building_model1.ipynb       # Jupyter Notebook for building/training other models (e.g., traditional)
-├── extract_features1.ipynb     # Jupyter Notebook for feature extraction experiments
-├── .gitignore                  
-└── README.md      
 ## 📄 Source Code Documentation
 
 * **Inline Comments:** All Python scripts (`.py`) and Jupyter Notebooks (`.ipynb`) are documented with inline comments explaining the logic of functions, classes, and critical code sections.
